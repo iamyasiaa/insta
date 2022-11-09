@@ -1,0 +1,119 @@
+.body {
+  padding-top: 44px;
+
+  .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 22px;
+    padding-left: 15px;
+    padding-right: 15px;
+    .statistics {
+      .quantity {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        color: #000000;
+      }
+      .name {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+        text-align: center;
+        color: #000000;
+      }
+    }
+  }
+  .discription {
+    padding-top: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+    gap: 3px;
+    .username {
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 16px;
+      color: #000000;
+    }
+    .text {
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+      color: #000000;
+    }
+    .link {
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+      color: #004c8b;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+    .button {
+      margin-top: 12px;
+      padding: 7px 0px;
+      width: 100%;
+      background: #ffffff;
+      border: 0.7px solid #cbcbcb;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 16px;
+      text-align: center;
+      color: #000000;
+      margin-bottom: 13px;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+  }
+  .stories {
+    padding-left: 15px;
+    padding-right: 15px;
+    .icon {
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+  }
+  .photo {
+    .tabs {
+      display: flex;
+      .tab {
+        border-bottom: 2px white solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 13px;
+        padding-bottom: 13px;
+        width: 100%;
+        color: gray;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+      .active {
+        border-bottom: 2px #262626 solid;
+        color: #262626;
+        &:hover {
+          cursor: pointer;
+          opacity: 1;
+        }
+      }
+    }
+    .contentTabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      .post {
+        width: 124px;
+        height: 124px;
+      }
+    }
+  }
+}

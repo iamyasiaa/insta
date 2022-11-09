@@ -1,0 +1,33 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  .body {
+    width: 375px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    .logo {
+    }
+    .menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      .icon {
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
