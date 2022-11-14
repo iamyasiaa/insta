@@ -16,6 +16,7 @@ import { ReactComponent as More } from "./icons/more.svg";
 import { ReactComponent as Comment } from "./icons/comment.svg";
 import { ReactComponent as Share } from "./icons/share.svg";
 import { ReactComponent as Bookmark } from "./icons/bookmark.svg";
+import { ReactComponent as Close } from "./icons/Close.svg";
 
 export {
   Home,
@@ -36,4 +37,5 @@ export {
   Comment,
   Share,
   Bookmark,
+  Close,
 };

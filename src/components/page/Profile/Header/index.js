@@ -1,7 +1,7 @@
 import styles from "./style.module.scss";
 import { Add, Burger, Dropdown } from "../../../ui/icon";
 
-export default function Header() {
+export default function Header({ onSelectFile }) {
   return (
     <header className={styles.header}>
       <div className={styles.body}>
@@ -10,7 +10,16 @@ export default function Header() {
           <Dropdown />
         </div>
         <div className={styles.add}>
-          <Add className={styles.icon} />
+          <input
+            id="selectHeader"
+            className={styles.input}
+            type="file"
+            accept="image/png, image/jpeg"
+            onChange={onSelectFile}
+          />
+          <label htmlFor={"selectHeader"} className={styles.label}>
+            <Add className={styles.icon} />
+          </label>
           <Burger className={styles.icon} />
         </div>
       </div>

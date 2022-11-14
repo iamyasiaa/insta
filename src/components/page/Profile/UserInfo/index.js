@@ -1,32 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import classNames from "classnames";
+import Stories from "react-insta-stories";
 
 import img from "../../../../images/MainAvatar.png";
-import cat1 from "../../../../images/cat1.jpg";
-import cat2 from "../../../../images/cat2.jpg";
-import cat3 from "../../../../images/cat3.jpg";
-import cat4 from "../../../../images/cat4.jpg";
-import cat5 from "../../../../images/cat5.jpg";
-import cat6 from "../../../../images/cat6.jpg";
-
-import styles from "./style.module.scss";
+import Modal from "../../../ui/modal";
 import { AddStory, Union, Grid } from "../../../ui/icon";
 
-const photo = {
-  mainPhoto: [cat1, cat2, cat3, cat4],
-  friendsPhoto: [cat5, cat6],
-};
+import styles from "./style.module.scss";
 
-export default function UserInfo() {
+export default function UserInfo({ photo }) {
+  const [activeModal, setActiveModal] = useState(false);
   const [tab, setTab] = useState("mainPhoto");
+  const [currentPhoto, setCurrentPhoto] = useState([]);
+  const [stories, setStories] = useState([]);
+
   const onClickTabs = (tabs) => {
     setTab(tabs);
   };
+
+  const onCloseModal = () => {
+    setActiveModal(false);
+  };
+
+  const onSelectFileStories = (ev) => {
+    setStories([...stories, URL.createObjectURL(ev.target.files[0])]);
+  };
+
+  const onSelectFile = (ev) => {
+    setCurrentPhoto([
+      ...currentPhoto,
+      {
+        url: URL.createObjectURL(ev.target.files[0]),
+        seeMoreCollapsed: () => {
+          return (
+            <div>
+              <input
+                id="select"
+                className={styles.input}
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={onSelectFile}
+              />
+              <label htmlFor={"select"} className={styles.labelStory}>
+                Add new story
+              </label>
+            </div>
+          );
+        },
+        seeMore: ({ close }) => {
+          return <div onClick={close}></div>;
+        },
+      },
+    ]);
+
+    setActiveModal(false);
+  };
+
+  const onClickLabel = () => {
+    if (currentPhoto.length) {
+      setActiveModal(true);
+    }
+  };
+
   return (
     <div className={styles.body}>
       <div className={styles.main}>
         <div className={styles.avatar}>
-          <img src={img} />
+          <input
+            id="select"
+            className={styles.input}
+            type="file"
+            accept="image/png, image/jpeg"
+            onChange={onSelectFile}
+          />
+          <label
+            htmlFor={currentPhoto.length ? "" : "select"}
+            className={styles.label}
+            onClick={onClickLabel}
+          >
+            <img
+              src={img}
+              className={classNames(
+                styles.photo,
+                currentPhoto.length && styles.activePhoto
+              )}
+            />
+          </label>
         </div>
         <div className={styles.statistics}>
           <p className={styles.quantity}>0,000</p>
@@ -52,7 +111,22 @@ export default function UserInfo() {
         <button className={styles.button}>Edit Profile</button>
       </div>
       <div className={styles.stories}>
-        <AddStory className={styles.icon} />
+        {stories?.map((item, index) => (
+          <div key={item} className={styles.storiesBlock}>
+            <img src={item} className={styles.storiesPhoto} />
+            <span className={styles.storiesText}>Stories {index + 1}</span>
+          </div>
+        ))}
+        <input
+          id="selectStories"
+          className={styles.input}
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={onSelectFileStories}
+        />
+        <label htmlFor={"selectStories"}>
+          <AddStory className={styles.icon} />
+        </label>
       </div>
       <div className={styles.photo}>
         <div className={styles.tabs}>
@@ -76,11 +150,23 @@ export default function UserInfo() {
           </div>
         </div>
         <div className={styles.contentTabs}>
-          {photo[tab].map((item) => (
+          {photo?.[tab]?.map((item) => (
             <img src={item} className={styles.post} key={item} />
           ))}
         </div>
       </div>
+      {
+        <Modal active={activeModal} onClose={onCloseModal}>
+          <Stories
+            onAllStoriesEnd={onCloseModal}
+            stories={currentPhoto}
+            width="300px"
+            height="600px"
+            preventDefault
+            keyboardNavigation
+          />
+        </Modal>
+      }
     </div>
   );
 }

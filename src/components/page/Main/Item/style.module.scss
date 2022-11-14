@@ -1,6 +1,9 @@
 .item {
+  padding-top: 41px;
+  border-bottom: 0.5px #dadada solid;
   .header {
-    padding-top: 41px;
+    padding-top: 8px;
+    border-top: 0.5px #dadada solid;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,22 +29,46 @@
   }
   .navigation {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     .iconBlock {
+      display: flex;
+      align-items: center;
+      padding-right: 54px;
       padding-top: 10px;
       padding-left: 13px;
       gap: 19px;
 
       .icon {
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
       }
     }
     .select {
+      align-items: center;
+      display: flex;
+      gap: 6px;
+      .activeItem {
+        border-radius: 15px;
+        width: 8px;
+        height: 8px;
+        background: #32b5ff;
+      }
       .selectItem {
+        border-radius: 15px;
+        width: 8px;
+        height: 8px;
+        background: gray;
       }
     }
     .bookmark {
       padding-right: 13px;
+      padding-left: 131px;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
     }
   }
   .description {
@@ -80,6 +107,7 @@
       }
     }
     .comments {
+      padding-bottom: 6px;
       padding-left: 13px;
       padding-top: 10px;
       gap: 7px;
@@ -89,6 +117,11 @@
       .userAvatar {
       }
       .commentText {
+        border: none;
+        width: 180px;
+        font-weight: 400;
+        font-size: 12.5px;
+        line-height: 22px;
       }
     }
   }

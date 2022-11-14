@@ -34,7 +34,7 @@ export default function Item() {
           <Share className={styles.icon} />
         </div>
         <div className={styles.select}>
-          <div className={styles.selectItem}></div>
+          <div className={styles.activeItem}></div>
           <div className={styles.selectItem}></div>
           <div className={styles.selectItem}></div>
         </div>
@@ -52,7 +52,7 @@ export default function Item() {
         </p>
         <div className={styles.comments}>
           <Avatar className={styles.userAvatar} />
-          <input className={styles.commentText} />
+          <input className={styles.commentText} placeholder="Add comment..." />
         </div>
       </div>
     </div>

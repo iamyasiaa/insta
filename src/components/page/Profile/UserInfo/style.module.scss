@@ -1,5 +1,24 @@
+.labelStory {
+  padding: 4px 16px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+  cursor: pointer;
+  background: linear-gradient(180deg, #de0046 0%, #f7a34b 100%);
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
 .body {
-  padding-top: 44px;
+  padding-top: 47px;
 
   .main {
     display: flex;
@@ -8,6 +27,27 @@
     gap: 22px;
     padding-left: 15px;
     padding-right: 15px;
+    .photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50px;
+      padding: 2px;
+      cursor: pointer;
+    }
+    .activePhoto {
+      border: 2.5px red solid;
+    }
+    .input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+    }
+    .avatar {
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
     .statistics {
       .quantity {
         font-weight: 700;
@@ -74,6 +114,33 @@
   .stories {
     padding-left: 15px;
     padding-right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: auto;
+    .storiesBlock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .storiesText {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 16px;
+      }
+      .storiesPhoto {
+        object-fit: cover;
+        width: 60px;
+        height: 60px;
+        border-radius: 50px;
+        border: 1px #dcdcdc solid;
+        padding: 2px;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+    }
     .icon {
       &:hover {
         cursor: pointer;
@@ -113,6 +180,7 @@
       .post {
         width: 124px;
         height: 124px;
+        object-fit: cover;
       }
     }
   }
