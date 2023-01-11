@@ -1,10 +1,25 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
-import { Home, Avatar, Reels, Search, Shop } from "../../ui/icon";
-import { ROUTES } from "../../../route/path";
+import { Home, Avatar, Reels, Search, Shop } from "@ui/icon";
+import { ROUTES } from "@/route/path";
 
 import styles from "./style.module.scss";
+
+interface IArrayMenu {
+  id: string,
+  url: string,
+  svg: ReactNode
+}
+
+const arrayMenu: IArrayMenu[]  = [
+  { id: uuidv4(), url: ROUTES.main, svg: <Home />},
+  { id: uuidv4(), url: '/', svg: <Search />},
+  { id: uuidv4(), url: '/', svg: <Reels />},
+  { id: uuidv4(), url: '/', svg: <Shop />},
+  { id: uuidv4(), url: ROUTES.profile, svg: <Avatar />},
+]
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -16,24 +31,13 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.body}>
-        <div className={styles.icon} onClick={() => onClickMenu(ROUTES.main)}>
-          <Home />
-        </div>
-        <div className={styles.icon}>
-          <Search />
-        </div>
-        <div className={styles.icon}>
-          <Reels />
-        </div>
-        <div className={styles.icon}>
-          <Shop />
-        </div>
-        <div
-          className={styles.icon}
-          onClick={() => onClickMenu(ROUTES.profile)}
-        >
-          <Avatar />
-        </div>
+        {
+          arrayMenu?.map(item=> (
+              <div key={item.id} className={styles.icon} onClick={() => onClickMenu(item.url)}>
+                {item.svg}
+              </div>
+          ))
+        }
       </div>
     </footer>
   );

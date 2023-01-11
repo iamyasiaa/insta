@@ -2,9 +2,9 @@ import React, { ChangeEvent, useState } from "react";
 import classNames from "classnames";
 import Stories from "react-insta-stories";
 
-import img from "../../../../images/MainAvatar.png";
-import Modal from "../../../ui/modal";
-import { AddStory, Union, Grid } from "../../../ui/icon";
+import img from "@img/MainAvatar.png";
+import Modal from "@ui/modal";
+import { AddStory, Union, Grid } from "@ui/icon";
 
 import styles from "./style.module.scss";
 

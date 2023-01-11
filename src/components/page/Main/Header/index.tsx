@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Ilogo, Heart, Messenger, Add } from "../../../ui/icon";
+import { Ilogo, Heart, Messenger, Add } from "@ui/icon";
 
 import styles from "./style.module.scss";
 

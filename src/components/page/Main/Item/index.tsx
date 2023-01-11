@@ -9,8 +9,8 @@ import {
   Share,
   Comment,
   Heart,
-} from "../../../ui/icon";
-import photo1 from "../../../../images/photo1.png";
+} from "@ui/icon";
+import photo1 from "@img/photo1.png";
 
 export default function Item() {
   return (

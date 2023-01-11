@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 
-import { Add, Burger, Dropdown } from "../../../ui/icon";
+import { Add, Burger, Dropdown } from "@ui/icon";
 
 import styles from "./style.module.scss";
 
