@@ -1,9 +1,10 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useContext, useEffect } from "react";
 
 import styles from "./style.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/route/path";
 import Footer from "@common/Footer";
+import { MyContext } from "../../../route/index";
 
 interface IBody {
   children: ReactNode;
@@ -12,13 +13,14 @@ interface IBody {
 export default function Body({ children }: IBody) {
   const navigate = useNavigate();
   let location = useLocation();
+  const context = useContext(MyContext);
 
   useEffect(() => {
-    if (!localStorage.getItem("auth") && location.pathname !== ROUTES.main) {
+    if (!context.isAuth && location.pathname !== ROUTES.main) {
       navigate(ROUTES.main);
     }
 
-    if (location.pathname === ROUTES.main && localStorage.getItem("auth")) {
+    if (location.pathname === ROUTES.main && context.isAuth) {
       navigate(ROUTES.lenta);
     }
   }, [location]);
@@ -26,7 +28,7 @@ export default function Body({ children }: IBody) {
   return (
     <div className={styles.body}>
       {children}
-      {localStorage.getItem("auth") && <Footer />}
+      {context.isAuth && <Footer />}
     </div>
   );
 }

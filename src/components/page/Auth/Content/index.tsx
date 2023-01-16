@@ -1,24 +1,32 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Ilogo } from "@/components/ui/icon";
 import Input from "@ui/input";
 import { ROUTES } from "@/route/path";
+import { MyContext } from "../../../../route/index";
 
 import styles from "./style.module.scss";
 
 export default function Content() {
   const navigate = useNavigate();
+  const context = useContext(MyContext);
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
   const onClickButton = () => {
-    localStorage.setItem("auth", "true");
-    setTimeout(() => {
-      navigate(ROUTES.lenta);
-    }, 1500);
+    if (context.newState) {
+      context.newState({
+        login: form.email,
+        password: form.password,
+        isAuth: true,
+      });
+      setTimeout(() => {
+        navigate(ROUTES.lenta);
+      }, 1500);
+    }
   };
 
   const onChange = (ev: ChangeEvent<HTMLInputElement>) => {
