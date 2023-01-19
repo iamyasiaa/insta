@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Ilogo } from "@/components/ui/icon";
-import Input from "@ui/input";
+import { Ilogo } from "@ui/icon";
+import { Input } from "@ui/index";
 import { ROUTES } from "@/route/path";
-import { MyContext } from "../../../../route/index";
+import { MyContext } from "@context/AuthContext";
 
 import styles from "./style.module.scss";
 
@@ -17,15 +17,9 @@ export default function Content() {
   });
 
   const onClickButton = () => {
-    if (context.newState) {
-      context.newState({
-        login: form.email,
-        password: form.password,
-        isAuth: true,
-      });
-      setTimeout(() => {
-        navigate(ROUTES.lenta);
-      }, 1500);
+    if (context.signIn) {
+      context.signIn();
+      navigate(ROUTES.news);
     }
   };
 

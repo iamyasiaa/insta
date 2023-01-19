@@ -1,23 +1,36 @@
-import React from "react";
+import React, { ReactNode } from "react";
+import classNames from "classnames";
 
 import styles from "./style.module.scss";
 
-import {
-  Avatar,
-  More,
-  Bookmark,
-  Share,
-  Comment,
-  Heart,
-} from "@ui/icon";
-import photo1 from "@img/photo1.png";
+import { Avatar, More, Bookmark, Share, Comment, Heart } from "@ui/icon";
+import { getArrayFavorites, newsActions } from "@/ducks/news";
+import { useAppDispatch, useAppSelector } from "@/store";
 
-export default function Item() {
+interface IItem {
+  avatar: ReactNode;
+  photo: string;
+  like: number;
+  id: string;
+}
+
+export default function Item({ avatar, photo, like, id }: IItem) {
+  const arrayFavorite = useAppSelector(getArrayFavorites);
+  const dispatch = useAppDispatch();
+
+  const onClickItem = () => {
+    if (arrayFavorite.find((item) => item === id)) {
+      dispatch(newsActions.remoteArrayFavourites(id));
+    } else {
+      dispatch(newsActions.addedArrayFavourites(id));
+    }
+  };
+
   return (
     <div className={styles.item}>
       <div className={styles.header}>
         <div className={styles.user}>
-          <Avatar />
+          {avatar}
           <p className={styles.name}>Ruffles</p>
         </div>
         <div className={styles.moreIcon}>
@@ -25,11 +38,17 @@ export default function Item() {
         </div>
       </div>
       <div className={styles.photo}>
-        <img src={photo1} />
+        <img src={photo} />
       </div>
       <div className={styles.navigation}>
         <div className={styles.iconBlock}>
-          <Heart className={styles.icon} />
+          <Heart
+            onClick={onClickItem}
+            className={classNames(
+              styles.icon,
+              arrayFavorite.find((item) => item === id) && styles.activeIcon
+            )}
+          />
           <Comment className={styles.icon} />
           <Share className={styles.icon} />
         </div>
@@ -43,7 +62,7 @@ export default function Item() {
         </div>
       </div>
       <div className={styles.description}>
-        <p className={styles.likes}>100 Likes</p>
+        <p className={styles.likes}>{like} Likes</p>
         <p className={styles.text}>
           {" "}
           <span className={styles.username}>username</span> Lorem ipsum dolor

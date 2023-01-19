@@ -1,6 +1,6 @@
 import React from "react";
 
-import Content from "@page/Auth/Content";
+import { Content } from "@componentsPage/Auth/index";
 
 export default function Auth() {
   return (

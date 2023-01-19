@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 
-import Header from "@page/Profile/Header";
-import UserInfo from "@page/Profile/UserInfo";
+import { Header, UserInfo } from "@componentsPage/Profile/index";
 import cat1 from "@img/cat1.jpg";
 import cat2 from "@img/cat2.jpg";
 import cat3 from "@img/cat3.jpg";

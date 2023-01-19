@@ -1,47 +1,15 @@
-import React, { createContext, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 
+import AuthContext from "@context/AuthContext";
 import { ROUTES } from "./path";
-import Profile from "@/pages/Profile";
-import Main from "@/pages/Main";
-import Body from "@common/Body";
-import Auth from "@/pages/Auth";
-
-interface IContextProvider {
-  login?: string | null;
-  password?: string | null;
-  isAuth?: boolean | null;
-  newState?: (context: IContext) => void;
-}
-
-interface IContext {
-  login?: string | null;
-  password?: string | null;
-  isAuth?: boolean | null;
-}
-
-export const MyContext = createContext<IContextProvider>({});
+import { Profile, Main, Auth, Favourites } from "@/pages/index";
+import { Body } from "@components/index";
+import PrivateRoute from "@/route/PrivateRoute";
 
 export default function MainRout() {
-  const [context, setContext] = useState<IContext>({
-    login: null,
-    password: null,
-    isAuth: false,
-  });
-
-  const newState = (state: IContext) => {
-    setContext(state);
-  };
-
   return (
-    <MyContext.Provider
-      value={{
-        login: context.login,
-        password: context.password,
-        isAuth: context.isAuth,
-        newState,
-      }}
-    >
+    <AuthContext>
       <Routes>
         <Route
           path={ROUTES.main}
@@ -51,23 +19,33 @@ export default function MainRout() {
             </Body>
           }
         />
-        <Route
-          path={ROUTES.profile}
-          element={
-            <Body>
-              <Profile />
-            </Body>
-          }
-        />
-        <Route
-          path={ROUTES.lenta}
-          element={
-            <Body>
-              <Main />
-            </Body>
-          }
-        />
+        <Route path={ROUTES.main} element={<PrivateRoute />}>
+          <Route
+            path={ROUTES.profile}
+            element={
+              <Body>
+                <Profile />
+              </Body>
+            }
+          />
+          <Route
+            path={ROUTES.favourites}
+            element={
+              <Body>
+                <Favourites />
+              </Body>
+            }
+          />
+          <Route
+            path={ROUTES.news}
+            element={
+              <Body>
+                <Main />
+              </Body>
+            }
+          />
+        </Route>
       </Routes>
-    </MyContext.Provider>
+    </AuthContext>
   );
 }

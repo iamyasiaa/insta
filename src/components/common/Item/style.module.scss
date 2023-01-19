@@ -26,6 +26,11 @@
     }
   }
   .photo {
+    img {
+      width: 375px;
+      height: 375px;
+      object-fit: cover;
+    }
   }
   .navigation {
     display: flex;
@@ -37,8 +42,12 @@
       padding-top: 10px;
       padding-left: 13px;
       gap: 19px;
+      .activeIcon{
+        color: red !important;
+      }
 
       .icon {
+        color: black;
         &:hover {
           cursor: pointer;
           opacity: 0.8;

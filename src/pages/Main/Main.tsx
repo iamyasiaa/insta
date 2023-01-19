@@ -1,7 +1,7 @@
 import React from "react";
 
-import Header from "@page/Main/Header";
-import Content from "@page/Main/Content";
+import { Content } from "@componentsPage/Main/index";
+import { Header } from "@components/index";
 
 export default function Main() {
   return (

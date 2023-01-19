@@ -14,10 +14,10 @@ interface IArrayMenu {
 }
 
 const arrayMenu: IArrayMenu[] = [
-  { id: uuidv4(), url: ROUTES.lenta, svg: <Home /> },
-  { id: uuidv4(), url: ROUTES.lenta, svg: <Search /> },
-  { id: uuidv4(), url: ROUTES.lenta, svg: <Reels /> },
-  { id: uuidv4(), url: ROUTES.lenta, svg: <Shop /> },
+  { id: uuidv4(), url: ROUTES.news, svg: <Home /> },
+  { id: uuidv4(), url: ROUTES.news, svg: <Search /> },
+  { id: uuidv4(), url: ROUTES.news, svg: <Reels /> },
+  { id: uuidv4(), url: ROUTES.news, svg: <Shop /> },
   { id: uuidv4(), url: ROUTES.profile, svg: <Avatar /> },
 ];
 

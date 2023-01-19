@@ -3,7 +3,7 @@ import classNames from "classnames";
 import Stories from "react-insta-stories";
 
 import img from "@img/MainAvatar.png";
-import Modal from "@ui/modal";
+import { Modal } from "@ui/index";
 import { AddStory, Union, Grid } from "@ui/icon";
 
 import styles from "./style.module.scss";
