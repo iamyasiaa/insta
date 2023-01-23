@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import { Ilogo } from "@ui/icon";
 import { Input } from "@ui/index";
@@ -17,10 +18,15 @@ export default function Content() {
   });
 
   const onClickButton = () => {
-    if (context.signIn) {
-      context.signIn();
-      navigate(ROUTES.news);
-    }
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, form.email, form.password)
+      .then(() => {
+        if (context.signIn) {
+          context.signIn();
+          navigate(ROUTES.news);
+        }
+      })
+      .catch(console.error);
   };
 
   const onChange = (ev: ChangeEvent<HTMLInputElement>) => {
