@@ -1,25 +1,37 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import classNames from "classnames";
 import Stories from "react-insta-stories";
+import { ref, onValue, set, remove } from "firebase/database";
+import { v4 as uuidv4 } from "uuid";
 
 import img from "@img/MainAvatar.png";
+import { db } from "@/index";
 import { Modal } from "@ui/index";
 import { AddStory, Union, Grid } from "@ui/icon";
+import { useAppDispatch } from "@/store";
+import { toBase64 } from "@/utils/functionHelper";
+import { Remote } from "@ui/icon";
 
 import styles from "./style.module.scss";
 
 interface IUserInfo {
+  onClickRemote: (id: string) => void;
   photo: {
-    mainPhoto: string[];
-    friendsPhoto: string[];
+    mainPhoto: IStories[];
+    friendsPhoto: IStories[];
   };
 }
 
-export default function UserInfo({ photo }: IUserInfo) {
+interface IStories {
+  photo: string;
+  id: string;
+}
+
+export default function UserInfo({ photo, onClickRemote }: IUserInfo) {
   const [activeModal, setActiveModal] = useState(false);
   const [tab, setTab] = useState<"mainPhoto" | "friendsPhoto">("mainPhoto");
   const [currentPhoto, setCurrentPhoto] = useState<any>([]);
-  const [stories, setStories] = useState<string[]>([]);
+  const [stories, setStories] = useState<IStories[]>([]);
 
   const onClickTabs = (tabs: "mainPhoto" | "friendsPhoto") => {
     setTab(tabs);
@@ -29,15 +41,27 @@ export default function UserInfo({ photo }: IUserInfo) {
     setActiveModal(false);
   };
 
-  const onSelectFileStories = (ev: ChangeEvent<HTMLInputElement>) => {
+  const onSelectFileStories = async (ev: ChangeEvent<HTMLInputElement>) => {
     if (!ev.target.files) {
       return;
     }
 
-    setStories([...stories, URL.createObjectURL(ev.target.files[0])]);
+    const id = `story-${uuidv4()}`;
+
+    set(ref(db, id), {
+      photo: await toBase64(ev.target.files[0]),
+      token: localStorage.getItem("token"),
+      type: "story",
+      id,
+    });
+
+    setStories([
+      ...stories,
+      { photo: URL.createObjectURL(ev.target.files[0]), id },
+    ]);
   };
 
-  const onSelectFile = (ev: ChangeEvent<HTMLInputElement>) => {
+  const onSelectFile = async (ev: ChangeEvent<HTMLInputElement>) => {
     if (!ev.target.files) {
       return;
     }
@@ -76,6 +100,28 @@ export default function UserInfo({ photo }: IUserInfo) {
       setActiveModal(true);
     }
   };
+
+  useEffect(() => {
+    onValue(ref(db), (snapshot) => {
+      const data = snapshot.val();
+      if (data !== null) {
+        const array = Object.values(data).filter(
+          (item: any) =>
+            item?.type === "story" &&
+            item?.token === localStorage.getItem("token")
+        );
+
+        setStories(
+          array.map((item: any) => {
+            return {
+              photo: item.photo,
+              id: item.id,
+            };
+          })
+        );
+      }
+    });
+  }, []);
 
   return (
     <div className={styles.body}>
@@ -127,8 +173,8 @@ export default function UserInfo({ photo }: IUserInfo) {
       </div>
       <div className={styles.stories}>
         {stories?.map((item, index) => (
-          <div key={item} className={styles.storiesBlock}>
-            <img src={item} className={styles.storiesPhoto} />
+          <div key={item.id} className={styles.storiesBlock}>
+            <img src={item.photo} className={styles.storiesPhoto} />
             <span className={styles.storiesText}>Stories {index + 1}</span>
           </div>
         ))}
@@ -165,8 +211,13 @@ export default function UserInfo({ photo }: IUserInfo) {
           </div>
         </div>
         <div className={styles.contentTabs}>
-          {photo?.[tab]?.map((item: string) => (
-            <img src={item} className={styles.post} key={item} />
+          {photo?.[tab]?.map((item) => (
+            <div className={styles.post} key={item.id}>
+              <img src={item.photo} className={styles.postPhoto} />
+              <div className={styles.iconPost}>
+                <Remote onClick={() => onClickRemote(item.id)} />
+              </div>
+            </div>
           ))}
         </div>
       </div>

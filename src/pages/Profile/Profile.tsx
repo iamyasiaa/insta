@@ -1,43 +1,94 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
+import { ref, set, onValue, remove } from "firebase/database";
+import { v4 as uuidv4 } from "uuid";
 
+import { db } from "@/index";
+import { toBase64 } from "@/utils/functionHelper";
 import { Header, UserInfo } from "@componentsPage/Profile/index";
-import cat1 from "@img/cat1.jpg";
-import cat2 from "@img/cat2.jpg";
-import cat3 from "@img/cat3.jpg";
-import cat4 from "@img/cat4.jpg";
 import cat5 from "@img/cat5.jpg";
 import cat6 from "@img/cat6.jpg";
 
 interface IState {
-  mainPhoto: string[];
-  friendsPhoto: string[];
+  mainPhoto: {
+    photo: string;
+    id: string;
+  }[];
+  friendsPhoto: {
+    photo: string;
+    id: string;
+  }[];
 }
 
 export default function Profile() {
   const [photo, setPhoto] = useState<IState>({
-    mainPhoto: [cat1, cat2, cat3, cat4],
-    friendsPhoto: [cat5, cat6],
+    mainPhoto: [],
+    friendsPhoto: [
+      { photo: cat5, id: uuidv4() },
+      { photo: cat6, id: uuidv4() },
+    ],
   });
 
-  const onSelectFile = (ev: ChangeEvent<HTMLInputElement>) => {
+  const onSelectFile = async (ev: ChangeEvent<HTMLInputElement>) => {
     if (!ev.target.files) {
       return;
     }
+
+    const id = `post-${uuidv4()}`;
+
+    set(ref(db, id), {
+      photo: await toBase64(ev.target.files[0]),
+      token: localStorage.getItem("token"),
+      type: "post",
+      id,
+    });
 
     setPhoto(
       Object.assign({}, photo, {
         mainPhoto: [
           ...photo.mainPhoto,
-          URL.createObjectURL(ev.target.files[0]),
+          { photo: URL.createObjectURL(ev.target.files[0]), id },
         ],
       })
     );
   };
 
+  const onClickRemote = (id: string) => {
+    remove(ref(db, id));
+    setPhoto(
+      Object.assign({}, photo, {
+        mainPhoto: photo.mainPhoto.filter((item) => item.id !== id),
+      })
+    );
+  };
+
+  useEffect(() => {
+    onValue(ref(db), (snapshot) => {
+      const data = snapshot.val();
+      if (data !== null) {
+        const array = Object.values(data).filter(
+          (item: any) =>
+            item?.type === "post" &&
+            item?.token === localStorage.getItem("token")
+        );
+
+        setPhoto(
+          Object.assign({}, photo, {
+            mainPhoto: array.map((item: any) => {
+              return {
+                photo: item.photo,
+                id: item.id,
+              };
+            }),
+          })
+        );
+      }
+    });
+  }, []);
+
   return (
     <div>
       <Header onSelectFile={onSelectFile} />
-      <UserInfo photo={photo} />
+      <UserInfo photo={photo} onClickRemote={onClickRemote} />
     </div>
   );
 }

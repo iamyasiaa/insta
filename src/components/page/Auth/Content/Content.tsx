@@ -1,16 +1,12 @@
 import React, { ChangeEvent, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import { Ilogo } from "@ui/icon";
 import { Input } from "@ui/index";
-import { ROUTES } from "@/route/path";
 import { MyContext } from "@context/AuthContext";
 
 import styles from "./style.module.scss";
 
 export default function Content() {
-  const navigate = useNavigate();
   const context = useContext(MyContext);
   const [form, setForm] = useState({
     email: "",
@@ -18,15 +14,9 @@ export default function Content() {
   });
 
   const onClickButton = () => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, form.email, form.password)
-      .then(() => {
-        if (context.signIn) {
-          context.signIn();
-          navigate(ROUTES.news);
-        }
-      })
-      .catch(console.error);
+    if (context.signIn) {
+      context.signIn(form.email, form.password);
+    }
   };
 
   const onChange = (ev: ChangeEvent<HTMLInputElement>) => {

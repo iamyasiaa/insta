@@ -1,0 +1,128 @@
+.item {
+  padding-top: 41px;
+  border-bottom: 0.5px #dadada solid;
+  .header {
+    padding-top: 8px;
+    border-top: 0.5px #dadada solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .moreIcon {
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding-bottom: 9px;
+      .name {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 22px;
+      }
+    }
+  }
+  .photo {
+  }
+  .navigation {
+    display: flex;
+    align-items: center;
+    .iconBlock {
+      display: flex;
+      align-items: center;
+      padding-right: 54px;
+      padding-top: 10px;
+      padding-left: 13px;
+      gap: 19px;
+
+      .icon {
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+    }
+    .select {
+      align-items: center;
+      display: flex;
+      gap: 6px;
+      .activeItem {
+        border-radius: 15px;
+        width: 8px;
+        height: 8px;
+        background: #32b5ff;
+      }
+      .selectItem {
+        border-radius: 15px;
+        width: 8px;
+        height: 8px;
+        background: gray;
+      }
+    }
+    .bookmark {
+      padding-right: 13px;
+      padding-left: 131px;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+  }
+  .description {
+    .likes {
+      padding-top: 10px;
+      padding-left: 13px;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 22px;
+      color: #000000;
+    }
+    .text {
+      padding-left: 13px;
+      padding-right: 13px;
+      font-weight: 500;
+      font-size: 13px;
+      color: #000000;
+      .username {
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 22px;
+        color: #000000;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+      .more {
+        font-weight: 500;
+        font-size: 13px;
+        color: gray;
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+    .comments {
+      padding-bottom: 6px;
+      padding-left: 13px;
+      padding-top: 10px;
+      gap: 7px;
+      display: flex;
+      align-items: center;
+
+      .userAvatar {
+      }
+      .commentText {
+        border: none;
+        width: 180px;
+        font-weight: 400;
+        font-size: 12.5px;
+        line-height: 22px;
+      }
+    }
+  }
+}

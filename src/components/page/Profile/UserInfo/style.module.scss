@@ -178,9 +178,24 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       .post {
+        position: relative;
+        width: 124px;
+        height: 124px;
+      }
+      .postPhoto {
         width: 124px;
         height: 124px;
         object-fit: cover;
+      }
+      .iconPost {
+        color: white;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
