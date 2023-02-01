@@ -1,9 +1,9 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import AuthContext from "@context/AuthContext";
 import { ROUTES } from "./path";
-import { Profile, Main, Auth, Favourites } from "@/pages/index";
+import { Profile, Main, Auth, Favourites, Registration } from "@/pages/index";
 import { Body } from "@components/index";
 import PrivateRoute from "@/route/PrivateRoute";
 
@@ -16,6 +16,14 @@ export default function MainRout() {
           element={
             <Body>
               <Auth />
+            </Body>
+          }
+        />
+        <Route
+          path={ROUTES.registration}
+          element={
+            <Body>
+              <Registration />
             </Body>
           }
         />

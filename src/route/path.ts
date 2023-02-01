@@ -3,4 +3,5 @@ export const ROUTES = {
   profile: "/profile",
   news: "/news",
   favourites: "/favourites",
+  registration: "/registration",
 };

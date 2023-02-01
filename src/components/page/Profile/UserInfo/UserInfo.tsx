@@ -8,9 +8,10 @@ import img from "@img/MainAvatar.png";
 import { db } from "@/index";
 import { Modal } from "@ui/index";
 import { AddStory, Union, Grid } from "@ui/icon";
-import { useAppDispatch } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/store";
 import { toBase64 } from "@/utils/functionHelper";
 import { Remote } from "@ui/icon";
+import { getUser } from "@/ducks/user";
 
 import styles from "./style.module.scss";
 
@@ -28,6 +29,7 @@ interface IStories {
 }
 
 export default function UserInfo({ photo, onClickRemote }: IUserInfo) {
+  const user = useAppSelector(getUser);
   const [activeModal, setActiveModal] = useState(false);
   const [tab, setTab] = useState<"mainPhoto" | "friendsPhoto">("mainPhoto");
   const [currentPhoto, setCurrentPhoto] = useState<any>([]);
@@ -42,22 +44,39 @@ export default function UserInfo({ photo, onClickRemote }: IUserInfo) {
   };
 
   const onSelectFileStories = async (ev: ChangeEvent<HTMLInputElement>) => {
+    let _data: any;
     if (!ev.target.files) {
       return;
     }
 
-    const id = `story-${uuidv4()}`;
-
-    set(ref(db, id), {
-      photo: await toBase64(ev.target.files[0]),
-      token: localStorage.getItem("token"),
-      type: "story",
-      id,
+    onValue(ref(db), async (snapshot) => {
+      _data = snapshot.val();
     });
+
+    if (ev.target.files) {
+      if (_data && _data?.stories) {
+        set(ref(db, "stories"), [
+          ..._data?.stories,
+          {
+            photo: await toBase64(ev.target.files[0]),
+            email: localStorage.getItem("token"),
+            id: uuidv4(),
+          },
+        ]);
+      } else {
+        set(ref(db, "stories"), [
+          {
+            photo: await toBase64(ev.target.files[0]),
+            email: localStorage.getItem("token"),
+            id: uuidv4(),
+          },
+        ]);
+      }
+    }
 
     setStories([
       ...stories,
-      { photo: URL.createObjectURL(ev.target.files[0]), id },
+      { photo: URL.createObjectURL(ev.target.files[0]), id: uuidv4() },
     ]);
   };
 
@@ -104,21 +123,11 @@ export default function UserInfo({ photo, onClickRemote }: IUserInfo) {
   useEffect(() => {
     onValue(ref(db), (snapshot) => {
       const data = snapshot.val();
-      if (data !== null) {
-        const array = Object.values(data).filter(
-          (item: any) =>
-            item?.type === "story" &&
-            item?.token === localStorage.getItem("token")
+      if (data && data?.stories) {
+        const arrayStories = data?.stories.filter(
+          (item: any) => item.email === localStorage.getItem("token")
         );
-
-        setStories(
-          array.map((item: any) => {
-            return {
-              photo: item.photo,
-              id: item.id,
-            };
-          })
-        );
+        setStories(arrayStories);
       }
     });
   }, []);
@@ -140,7 +149,7 @@ export default function UserInfo({ photo, onClickRemote }: IUserInfo) {
             onClick={onClickLabel}
           >
             <img
-              src={img}
+              src={user.photo}
               className={classNames(
                 styles.photo,
                 currentPhoto.length && styles.activePhoto

@@ -2,9 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 import { newsReducer } from "@/ducks/news";
+import { userReducer } from "@/ducks/user";
 
 const rootReducer = combineReducers({
   newsReducer,
+  userReducer,
 });
 
 export function setupStore() {

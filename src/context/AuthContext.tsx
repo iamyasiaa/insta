@@ -2,6 +2,10 @@ import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { ROUTES } from "@/route/path";
 import { useNavigate, useLocation } from "react-router-dom";
+import { onValue, ref } from "firebase/database";
+import { db } from "@/index";
+import { useAppDispatch } from "@/store";
+import { userActions } from "@/ducks/user";
 
 interface IContextProvider {
   isAuth?: boolean;
@@ -20,28 +24,67 @@ interface IAuthContext {
 export const MyContext = createContext<IContextProvider>({});
 
 export default function AuthContext({ children }: IAuthContext) {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [context, setContext] = useState<IContext>({
-    isAuth: localStorage.getItem("token") ? true : false,
+    isAuth: !!localStorage.getItem("token"),
   });
 
   const signOut = () => {
     setContext({ isAuth: false });
   };
 
-  const signIn = (email: string, password: string) => {
+  const signIn = async (email: string, password: string) => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
       .then((data) => {
-        data.user.getIdToken().then((token) => {
-          localStorage.setItem("token", token);
-        });
-        setContext({ isAuth: true });
-        navigate(ROUTES.news);
+        if (data.user.email) {
+          localStorage.setItem("token", data.user.email);
+          setContext({ isAuth: true });
+          navigate(ROUTES.news);
+        }
       })
       .catch(console.error);
+
+    onValue(ref(db), async (snapshot) => {
+      const data = snapshot.val().user;
+      if (data && data?.length) {
+        data.map((item: any) => {
+          if (item.email === email) {
+            dispatch(
+              userActions.setStateUser({
+                name: item.name,
+                photo: item.photo,
+                email,
+              })
+            );
+          }
+        });
+      }
+    });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      onValue(ref(db), async (snapshot) => {
+        const data = snapshot.val().user;
+        if (data && data?.length) {
+          data.map((item: any) => {
+            if (item.email === localStorage.getItem("token")) {
+              dispatch(
+                userActions.setStateUser({
+                  name: item.name,
+                  photo: item.photo,
+                  email: item.email,
+                })
+              );
+            }
+          });
+        }
+      });
+    }
+  }, [localStorage.getItem("token")]);
 
   useEffect(() => {
     if (localStorage.getItem("token") && location.pathname === ROUTES.main) {

@@ -1,17 +1,24 @@
 import React, { ChangeEvent, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Ilogo } from "@ui/icon";
 import { Input } from "@ui/index";
 import { MyContext } from "@context/AuthContext";
 
 import styles from "./style.module.scss";
+import { ROUTES } from "@/route/path";
 
 export default function Content() {
   const context = useContext(MyContext);
+  const navigation = useNavigate();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+
+  const onClickRegistration = () => {
+    navigation(ROUTES.registration);
+  };
 
   const onClickButton = () => {
     if (context.signIn) {
@@ -55,6 +62,9 @@ export default function Content() {
         >
           Войти
         </button>
+        <div className={styles.registration} onClick={onClickRegistration}>
+          Регистрация
+        </div>
       </div>
     </div>
   );
