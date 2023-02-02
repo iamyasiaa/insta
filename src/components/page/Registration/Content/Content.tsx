@@ -1,7 +1,8 @@
-import React, { ChangeEvent, useState, useContext } from "react";
+import React, { ChangeEvent, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set, onValue, remove } from "firebase/database";
+import { v4 as uuidv4 } from "uuid";
 
 import { Ilogo } from "@ui/icon";
 import { Input } from "@ui/index";
@@ -23,6 +24,7 @@ interface IUseState {
 }
 
 export default function Content() {
+  const [users, setUsers] = useState(undefined);
   const context = useContext(MyContext);
   const navigation = useNavigate();
   const [form, setForm] = useState<IUseState>({
@@ -38,7 +40,6 @@ export default function Content() {
 
   const onClickButton = async () => {
     const auth = getAuth();
-    let _data: any;
     await createUserWithEmailAndPassword(auth, form.email, form.password).catch(
       (er) => {
         console.error(er);
@@ -46,26 +47,28 @@ export default function Content() {
       }
     );
 
-    onValue(ref(db), async (snapshot) => {
-      _data = snapshot.val();
-    });
-
     if (form.file) {
-      if (_data && _data?.user) {
+      if (users) {
         set(ref(db, "user"), [
-          ..._data.user,
+          ...users,
           {
+            id: uuidv4(),
             photo: await toBase64(form.file),
             email: form.email,
             name: form.name,
+            followers: [],
+            following: [],
           },
         ]);
       } else {
         set(ref(db, "user"), [
           {
+            id: uuidv4(),
             photo: await toBase64(form.file),
             email: form.email,
             name: form.name,
+            followers: [],
+            following: [],
           },
         ]);
       }
@@ -94,6 +97,11 @@ export default function Content() {
       })
     );
   };
+  useEffect(() => {
+    onValue(ref(db), (snapshot) => {
+      setUsers(snapshot.val().user);
+    });
+  }, [form]);
 
   return (
     <div className={styles.body}>

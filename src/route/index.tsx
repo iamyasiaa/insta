@@ -3,8 +3,15 @@ import { Route, Routes } from "react-router-dom";
 
 import AuthContext from "@context/AuthContext";
 import { ROUTES } from "./path";
-import { Profile, Main, Auth, Favourites, Registration } from "@/pages/index";
-import { Body } from "@components/index";
+import {
+  Profile,
+  Main,
+  Auth,
+  Favourites,
+  Registration,
+  Search,
+} from "@/pages/index";
+import { Body, MainBody } from "@components/index";
 import PrivateRoute from "@/route/PrivateRoute";
 
 export default function MainRout() {
@@ -29,6 +36,14 @@ export default function MainRout() {
         />
         <Route path={ROUTES.main} element={<PrivateRoute />}>
           <Route
+            path={ROUTES.search}
+            element={
+              <MainBody>
+                <Search />
+              </MainBody>
+            }
+          />
+          <Route
             path={ROUTES.profile}
             element={
               <Body>
@@ -39,17 +54,17 @@ export default function MainRout() {
           <Route
             path={ROUTES.favourites}
             element={
-              <Body>
+              <MainBody>
                 <Favourites />
-              </Body>
+              </MainBody>
             }
           />
           <Route
             path={ROUTES.news}
             element={
-              <Body>
+              <MainBody>
                 <Main />
-              </Body>
+              </MainBody>
             }
           />
         </Route>

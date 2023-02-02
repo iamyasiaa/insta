@@ -3,7 +3,7 @@ import React, { ChangeEvent } from "react";
 import styles from "./style.module.scss";
 
 interface IInput {
-  lable: string;
+  lable?: string;
   placeholder?: string;
   password?: boolean;
   onChange?: (ev: ChangeEvent<HTMLInputElement>) => void;

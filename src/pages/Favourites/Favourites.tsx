@@ -6,7 +6,6 @@ import { Content } from "@componentsPage/Favourites/index";
 export default function Favourites() {
   return (
     <div>
-      <Header />
       <Content />
     </div>
   );

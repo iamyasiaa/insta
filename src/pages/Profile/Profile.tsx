@@ -47,9 +47,11 @@ export default function Profile() {
         set(ref(db, "post"), [
           ..._data?.post,
           {
+            userPhoto: user.photo,
+            name: user.name,
             comments: [],
             like: 0,
-            location: "",
+            location: user.location,
             photo: await toBase64(ev.target.files[0]),
             email: localStorage.getItem("token"),
             id,
@@ -62,7 +64,7 @@ export default function Profile() {
             name: user.name,
             comments: [],
             like: 0,
-            location: "",
+            location: user.location,
             photo: await toBase64(ev.target.files[0]),
             email: localStorage.getItem("token"),
             id,

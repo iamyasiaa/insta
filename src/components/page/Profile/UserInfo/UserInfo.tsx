@@ -158,7 +158,7 @@ export default function UserInfo({ photo, onClickRemote }: IUserInfo) {
           </label>
         </div>
         <div className={styles.statistics}>
-          <p className={styles.quantity}>0,000</p>
+          <p className={styles.quantity}>{photo.mainPhoto.length}</p>
           <p className={styles.name}>Posts</p>
         </div>
         <div className={styles.statistics}>

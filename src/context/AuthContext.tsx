@@ -1,11 +1,12 @@
 import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { ROUTES } from "@/route/path";
+import { usePosition } from "@/hooks/usePosition";
 import { useNavigate, useLocation } from "react-router-dom";
 import { onValue, ref } from "firebase/database";
 import { db } from "@/index";
 import { useAppDispatch } from "@/store";
-import { userActions } from "@/ducks/user";
+import { getLocationUser, userActions } from "@/ducks/user";
 
 interface IContextProvider {
   isAuth?: boolean;
@@ -24,6 +25,7 @@ interface IAuthContext {
 export const MyContext = createContext<IContextProvider>({});
 
 export default function AuthContext({ children }: IAuthContext) {
+  const position: any = usePosition();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -91,6 +93,14 @@ export default function AuthContext({ children }: IAuthContext) {
       navigate(ROUTES.news);
     }
   }, [location]);
+
+  useEffect(() => {
+    if (position?.latitude && position?.longitude) {
+      dispatch(
+        getLocationUser({ lat: position?.latitude, lng: position?.longitude })
+      );
+    }
+  }, [position?.latitude, position?.longitude]);
 
   return (
     <MyContext.Provider

@@ -22,32 +22,7 @@ interface INewsSchema {
 }
 
 const initialState: INewsSchema = {
-  arrayNews: [
-    {
-      id: uuidv4(),
-      avatar: <Avatar />,
-      photo: photo1,
-      like: 100,
-    },
-    {
-      id: uuidv4(),
-      avatar: <Avatar />,
-      photo: photo2,
-      like: 5,
-    },
-    {
-      id: uuidv4(),
-      avatar: <Avatar />,
-      photo: photo3,
-      like: 10,
-    },
-    {
-      id: uuidv4(),
-      avatar: <Avatar />,
-      photo: photo4,
-      like: 25,
-    },
-  ],
+  arrayNews: [],
   arrayFavourites: [],
 };
 
@@ -91,11 +66,6 @@ export const newsSlice = createSlice({
 });
 
 const newsStateSelector = (state: RootState) => state.newsReducer;
-
-export const getArrayNews = createSelector(
-  newsStateSelector,
-  (state) => state.arrayNews
-);
 
 export const getArrayFavorites = createSelector(
   newsStateSelector,

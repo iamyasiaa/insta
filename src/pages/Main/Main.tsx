@@ -6,7 +6,6 @@ import { Header } from "@components/index";
 export default function Main() {
   return (
     <div>
-      <Header />
       <Content />
     </div>
   );

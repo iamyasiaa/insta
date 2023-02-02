@@ -17,7 +17,7 @@ interface IArrayMenu {
 
 const arrayMenu: IArrayMenu[] = [
   { id: uuidv4(), url: ROUTES.news, svg: <Home /> },
-  { id: uuidv4(), url: ROUTES.news, svg: <Search /> },
+  { id: uuidv4(), url: ROUTES.search, svg: <Search /> },
   { id: uuidv4(), url: ROUTES.news, svg: <Reels /> },
   { id: uuidv4(), url: ROUTES.news, svg: <Shop /> },
 ];

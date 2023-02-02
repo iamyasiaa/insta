@@ -8,13 +8,22 @@ import { getArrayFavorites, newsActions } from "@/ducks/news";
 import { useAppDispatch, useAppSelector } from "@/store";
 
 interface IItem {
-  avatar: ReactNode;
+  avatar: string;
   photo: string;
   like: number;
   id: string;
+  location?: string;
+  name?: string;
 }
 
-export default function Item({ avatar, photo, like, id }: IItem) {
+export default function Item({
+  avatar,
+  photo,
+  like,
+  id,
+  location,
+  name,
+}: IItem) {
   const arrayFavorite = useAppSelector(getArrayFavorites);
   const dispatch = useAppDispatch();
 
@@ -30,12 +39,10 @@ export default function Item({ avatar, photo, like, id }: IItem) {
     <div className={styles.item}>
       <div className={styles.header}>
         <div className={styles.user}>
-          {avatar}
-          <p className={styles.name}>Ruffles</p>
+          <img className={styles.avatar} src={avatar} />
+          <p className={styles.name}>{name}</p>
         </div>
-        <div className={styles.moreIcon}>
-          <More />
-        </div>
+        <p className={styles.location}>{location}</p>
       </div>
       <div className={styles.photo}>
         <img src={photo} />
@@ -50,25 +57,10 @@ export default function Item({ avatar, photo, like, id }: IItem) {
             )}
           />
           <Comment className={styles.icon} />
-          <Share className={styles.icon} />
-        </div>
-        <div className={styles.select}>
-          <div className={styles.activeItem}></div>
-          <div className={styles.selectItem}></div>
-          <div className={styles.selectItem}></div>
-        </div>
-        <div className={styles.bookmark}>
-          <Bookmark className={styles.icon} />
         </div>
       </div>
       <div className={styles.description}>
         <p className={styles.likes}>{like} Likes</p>
-        <p className={styles.text}>
-          {" "}
-          <span className={styles.username}>username</span> Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit, sed do elusmod tempor
-          incididunt... <span className={styles.more}>more</span>
-        </p>
         <div className={styles.comments}>
           <Avatar className={styles.userAvatar} />
           <input className={styles.commentText} placeholder="Add comment..." />
