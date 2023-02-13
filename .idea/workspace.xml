@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c4bdfc8c-93cb-448e-8533-31ee800184c5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/Profile/UserInfo/UserInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Profile/UserInfo/UserInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/Profile/UserInfo/style.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Profile/UserInfo/style.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/Search/ContentSearch/ContentSearch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Search/ContentSearch/ContentSearch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/Search/ContentSearch/style.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Search/ContentSearch/style.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ducks/news.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ducks/news.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ducks/user.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ducks/user.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/route/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/route/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/route/path.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/route/path.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2L8NaBaOLTGLxgYt3X0QnKQ5XBq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/555/OneDrive/Рабочий стол/work/insta/src/components/common&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\555\\OneDrive\\Рабочий стол\\work\\insta\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\555\\OneDrive\\Рабочий стол\\work\\insta\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\555\OneDrive\Рабочий стол\work\insta\src\components\common" />
+      <recent name="C:\Users\555\OneDrive\Рабочий стол\work\insta\src\ducks" />
+      <recent name="C:\Users\555\OneDrive\Рабочий стол\work\insta\src\components\page\Registration" />
+      <recent name="C:\Users\555\OneDrive\Рабочий стол\work\insta\src\pages\Registration" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\555\OneDrive\Рабочий стол\work\insta\src\components\page\Registration" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c4bdfc8c-93cb-448e-8533-31ee800184c5" name="Changes" comment="" />
+      <created>1675248813614</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1675248813614</updated>
+      <workItem from="1675248817040" duration="8045000" />
+      <workItem from="1675330660569" duration="13661000" />
+      <workItem from="1675839671037" duration="13000" />
+      <workItem from="1675935069487" duration="14000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
