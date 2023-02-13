@@ -20,6 +20,19 @@
       gap: 5px;
       padding-bottom: 20px;
     }
+    .registration {
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #0f6fc1;
+      padding-top: 15px;
+      display: flex;
+      justify-content: center;
+      &:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+    }
     .button {
       color: white;
       width: 100%;

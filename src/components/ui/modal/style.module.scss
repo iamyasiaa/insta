@@ -1,9 +1,8 @@
 .modal {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    #ffffff;
+  background: "rgba(0, 0, 0, 1)";
   position: fixed;
   bottom: 0;
-  right: 0;
+  right: 1300px;
   left: 0;
   top: 0;
   z-index: 100;

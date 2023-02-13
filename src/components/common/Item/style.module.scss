@@ -1,0 +1,173 @@
+.item {
+  padding-top: 41px;
+  border-bottom: 0.5px #dadada solid;
+  .header {
+    padding-top: 8px;
+    border-top: 0.5px #dadada solid;
+    display: flex;
+    flex-direction: column;
+
+    .avatar {
+      width: 25px;
+      height: 25px;
+      border-radius: 15px;
+    }
+
+    .moreIcon {
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      .name {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 22px;
+      }
+    }
+    .location {
+      font-weight: 500;
+      font-size: 10px;
+      line-height: 22px;
+    }
+  }
+  .photo {
+    img {
+      width: 375px;
+      height: 375px;
+      object-fit: cover;
+    }
+  }
+  .navigation {
+    display: flex;
+    align-items: center;
+    .iconBlock {
+      display: flex;
+      align-items: center;
+      padding-right: 54px;
+      padding-top: 10px;
+      padding-left: 13px;
+      gap: 19px;
+      .activeIcon {
+        color: red !important;
+      }
+
+      .icon {
+        color: black;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+      .commentsText {
+        padding-top: 10px;
+        padding-left: 13px;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 22px;
+        color: #000000;
+      }
+      .commetnButton {
+        margin-top: 12px;
+        padding: 7px 0px;
+        width: 100%;
+        background: #1489f7;
+        border: 0.7px solid #cbcbcb;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 16px;
+        text-align: center;
+        color: #f8f7f7;
+        margin-bottom: 13px;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+    }
+    .select {
+      align-items: center;
+      display: flex;
+      gap: 6px;
+      .activeItem {
+        border-radius: 15px;
+        width: 8px;
+        height: 8px;
+        background: #32b5ff;
+      }
+      .selectItem {
+        border-radius: 15px;
+        width: 8px;
+        height: 8px;
+        background: gray;
+      }
+    }
+    .bookmark {
+      padding-right: 13px;
+      padding-left: 131px;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+  }
+  .description {
+    .likes {
+      padding-top: 10px;
+      padding-left: 13px;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 22px;
+      color: #000000;
+    }
+    .text {
+      padding-left: 13px;
+      padding-right: 13px;
+      font-weight: 500;
+      font-size: 13px;
+      color: #000000;
+      .username {
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 22px;
+        color: #000000;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+      .more {
+        font-weight: 500;
+        font-size: 13px;
+        color: gray;
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+    .comments {
+      padding-bottom: 6px;
+      padding-left: 13px;
+      padding-top: 10px;
+      gap: 7px;
+      display: flex;
+      align-items: center;
+
+      .userAvatar {
+      }
+      .commentText {
+        border: none;
+        width: 180px;
+        font-weight: 400;
+        font-size: 12.5px;
+        line-height: 22px;
+      }
+    }
+  }
+}

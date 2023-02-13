@@ -1,5 +1,9 @@
 export const ROUTES = {
   main: "/",
   profile: "/profile",
-  lenta: "/lenta"
+  news: "/news",
+  favourites: "/favourites",
+  registration: "/registration",
+  search: "/search",
+  anotheUser: "/anotherUser",
 };

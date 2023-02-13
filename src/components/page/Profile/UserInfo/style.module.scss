@@ -1,12 +1,11 @@
 .labelStory {
-  padding: 4px 16px;
-  border-radius: 15px;
-  font-weight: 600;
+  padding: 16px 16px;
+  font-weight: 800;
   font-size: 16px;
   line-height: 19px;
   color: #ffffff;
   cursor: pointer;
-  background: linear-gradient(180deg, #de0046 0%, #f7a34b 100%);
+  background: none;
   &:hover {
     opacity: 0.8;
   }
@@ -178,9 +177,24 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       .post {
+        position: relative;
+        width: 124px;
+        height: 124px;
+      }
+      .postPhoto {
         width: 124px;
         height: 124px;
         object-fit: cover;
+      }
+      .iconPost {
+        color: white;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
