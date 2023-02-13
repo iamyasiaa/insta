@@ -1,0 +1,38 @@
+.item {
+  padding-top: 15px;
+
+  .header {
+    padding-top: 8px;
+
+    display: flex;
+    flex-direction: column;
+
+    .avatar {
+      width: 25px;
+      height: 25px;
+      border-radius: 15px;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      .name {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 22px;
+      }
+    }
+  }
+  .button {
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    border: none;
+    background: #58abff;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

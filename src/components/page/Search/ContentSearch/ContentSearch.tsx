@@ -1,7 +1,9 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
+import Fuse from "fuse.js";
 
 import { Input } from "@ui/input";
 import { Search } from "@ui/icon";
+import { ItemUser } from "@components/index";
 
 import styles from "./style.module.scss";
 import { onValue, ref } from "firebase/database";
@@ -10,6 +12,7 @@ import { useAppSelector } from "@/store";
 import { getUser } from "@/ducks/user";
 
 export default function ContentSearch() {
+  const [arrayUser, setArrayUser] = useState([]);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState([]);
   const currentUser = useAppSelector(getUser);
@@ -18,6 +21,14 @@ export default function ContentSearch() {
     const { name, value } = ev.target;
     setSearch(value);
   };
+
+  useEffect(() => {
+    onValue(ref(db), async (snapshot) => {
+      const data = snapshot.val();
+      setArrayUser(data.user);
+    });
+  }, []);
+
   const onClickSearch = () => {
     if (search) {
       onValue(ref(db), async (snapshot) => {
@@ -36,15 +47,23 @@ export default function ContentSearch() {
       });
     }
   };
-  return (
-    <div className={styles.search}>
-      <div className={styles.searchInput}>
-        <Input value={search} onChange={onChange} />
-      </div>
+  console.log(user);
 
-      <button onClick={onClickSearch} className={styles.searchButton}>
-        <Search />
-      </button>
+  return (
+    <div>
+      <div className={styles.search}>
+        <div className={styles.searchInput}>
+          <Input value={search} onChange={onChange} />
+        </div>
+        <button onClick={onClickSearch} className={styles.searchButton}>
+          <Search />
+        </button>
+      </div>
+      <div className={styles.itemUser}>
+        {user.map((item: any) => (
+          <ItemUser key={item.id} avatar={item.userPhoto} name={item.name} />
+        ))}
+      </div>
     </div>
   );
 }

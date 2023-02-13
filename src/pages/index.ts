@@ -4,5 +4,6 @@ import { Profile } from "./Profile";
 import { Favourites } from "./Favourites";
 import { Registration } from "./Registration";
 import { Search } from "./Search";
+import { AnotherUser } from "./AnotherUser";
 
-export { Auth, Main, Profile, Favourites, Registration, Search };
+export { Auth, Main, Profile, Favourites, Registration, Search, AnotherUser };

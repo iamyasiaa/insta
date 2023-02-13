@@ -5,4 +5,5 @@ export const ROUTES = {
   favourites: "/favourites",
   registration: "/registration",
   search: "/search",
+  anotheUser: "/anotherUser",
 };

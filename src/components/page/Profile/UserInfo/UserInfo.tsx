@@ -11,7 +11,7 @@ import { AddStory, Union, Grid } from "@ui/icon";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { toBase64 } from "@/utils/functionHelper";
 import { Remote } from "@ui/icon";
-import { getUser } from "@/ducks/user";
+import { getUser, userSlice } from "@/ducks/user";
 
 import styles from "./style.module.scss";
 
@@ -100,7 +100,7 @@ export default function UserInfo({ photo, onClickRemote }: IUserInfo) {
                 onChange={onSelectFile}
               />
               <label htmlFor={"select"} className={styles.labelStory}>
-                Add new story
+                +
               </label>
             </div>
           );
@@ -162,11 +162,11 @@ export default function UserInfo({ photo, onClickRemote }: IUserInfo) {
           <p className={styles.name}>Posts</p>
         </div>
         <div className={styles.statistics}>
-          <p className={styles.quantity}>0,000</p>
+          <p className={styles.quantity}>0</p>
           <p className={styles.name}>Followers</p>
         </div>
         <div className={styles.statistics}>
-          <p className={styles.quantity}>0,000</p>
+          <p className={styles.quantity}>0</p>
           <p className={styles.name}>Following</p>
         </div>
       </div>

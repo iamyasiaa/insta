@@ -25,6 +25,8 @@ interface IUserSchema {
   photo: string;
   email: string;
   location: string;
+  following: number;
+  followers: number;
 }
 
 const initialState: IUserSchema = {
@@ -32,6 +34,8 @@ const initialState: IUserSchema = {
   photo: "",
   email: "",
   location: "",
+  following: 0,
+  followers: 0,
 };
 
 export const userSlice = createSlice({
@@ -42,11 +46,15 @@ export const userSlice = createSlice({
       state.name = data.payload.name;
       state.photo = data.payload.photo;
       state.email = data.payload.email;
+      state.following = data.payload.following;
+      state.followers = data.payload.followers;
     },
     clearUser(state) {
       state.name = "";
       state.photo = "";
       state.email = "";
+      state.following = 0;
+      state.followers = 0;
     },
   },
   extraReducers: (builder) => {

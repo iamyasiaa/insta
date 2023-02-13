@@ -27,6 +27,7 @@ export default function Content() {
           like={item.like}
           name={item.name}
           location={item.location}
+          comment={item.comments}
         />
       ))}
     </div>

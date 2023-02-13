@@ -11,4 +11,12 @@
 .searchButton {
   background: none;
   border: none;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.itemUser {
+  display: grid;
+  align-items: center;
 }

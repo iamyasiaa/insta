@@ -11,13 +11,14 @@ export default function Content() {
 
   return (
     <div className={styles.news}>
-      {[].map((item: any) => (
+      {arrayFavoriteId.map((item: any) => (
         <Item
           id={item.id}
           key={item.id}
           avatar={item.avatar}
           photo={item.photo}
           like={item.like}
+          comment={item.comments}
         />
       ))}
     </div>

@@ -10,6 +10,7 @@ import {
   Favourites,
   Registration,
   Search,
+  AnotherUser,
 } from "@/pages/index";
 import { Body, MainBody } from "@components/index";
 import PrivateRoute from "@/route/PrivateRoute";
@@ -41,6 +42,14 @@ export default function MainRout() {
               <MainBody>
                 <Search />
               </MainBody>
+            }
+          />
+          <Route
+            path={ROUTES.anotheUser}
+            element={
+              <Body>
+                <AnotherUser />
+              </Body>
             }
           />
           <Route

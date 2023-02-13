@@ -1,12 +1,6 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { ReactElement } from "react";
-import { v4 as uuidv4 } from "uuid";
 
-import { Avatar } from "@ui/icon";
-import photo1 from "@img/photo1.png";
-import photo2 from "@img/cat1.jpg";
-import photo3 from "@img/cat2.jpg";
-import photo4 from "@img/cat3.jpg";
 import { RootState } from "@/store";
 
 interface IArrayNews {
@@ -14,22 +8,28 @@ interface IArrayNews {
   photo: string;
   like: number;
   id: string;
+  comments: string;
 }
 
 interface INewsSchema {
   arrayNews: IArrayNews[];
   arrayFavourites: string[];
+  arrayComments: string[];
 }
 
 const initialState: INewsSchema = {
   arrayNews: [],
   arrayFavourites: [],
+  arrayComments: [],
 };
 
 export const newsSlice = createSlice({
   name: "newsSlice",
   initialState,
   reducers: {
+    addNewComments(state, action) {
+      state.arrayComments = [...state.arrayComments, action.payload];
+    },
     addedArrayFavourites(state, action) {
       state.arrayFavourites = [...state.arrayFavourites, action.payload];
       state.arrayNews = state.arrayNews.map((item) => {
@@ -66,10 +66,15 @@ export const newsSlice = createSlice({
 });
 
 const newsStateSelector = (state: RootState) => state.newsReducer;
+const commentsStateSelector = (state: RootState) => state.newsReducer;
 
 export const getArrayFavorites = createSelector(
   newsStateSelector,
   (state) => state.arrayFavourites
+);
+export const getArrayComments = createSelector(
+  commentsStateSelector,
+  (state) => state.arrayComments
 );
 
 export const { reducer: newsReducer } = newsSlice;
